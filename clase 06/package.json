@@ -1,0 +1,18 @@
+{
+  "name": "clase-06",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Mensaje según la hora.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node express.js",
+    "start:dev": "nodemon express.js"
+  },
+  "keywords": [],
+  "author": "Juan Pablo Godoy",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2"
+  }
+}
