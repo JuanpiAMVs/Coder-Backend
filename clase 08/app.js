@@ -14,5 +14,4 @@ app.use('/api/productos', indexRouter);
 
 app.use(errorHandler)
 
-
 module.exports = app;

@@ -2,7 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 
-let products = [];
+let products = [{id: "hola" , Title: "asdasd" , id: 2132131}, {id: "hola" , Title: "asdasd" , id: 2132131}];
 
 router.get("/", (_req, res, next) => {
   try {
@@ -21,7 +21,7 @@ router.post("/", (req, res, next) => {
     }
     products.push(body);
     console.log(body);
-    res.redirect("/public/index.html");
+    res.redirect("/products");
   } catch (err) {
     next(err);
   }
@@ -80,4 +80,4 @@ router.delete('/:id', (req, res, next) => {
     }
 })
 module.exports = router;
-
+module.exports = products
