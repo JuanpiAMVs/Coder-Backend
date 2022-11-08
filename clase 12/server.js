@@ -25,7 +25,7 @@ http.listen(PORT, () => console.info(`Server up and running on PORT ${PORT}`))
 io.on('connection', (socket) => {
     console.info('Nuevo cliente conectado')    
     socket.emit('UPDATE_DATA_MSG', messages);
-    socket.emit('UPDATE_DATA_PROD', messages);
+    socket.emit('UPDATE_DATA_PROD', products);
     socket.on('NEW_MEESAGE_TO_SERVER', data => {
         messages.push(data)
         console.info(messages)
