@@ -57,14 +57,16 @@ function updateProducts(data){
     let productsToHtml = ""
     let number = 0
     data.forEach(i => { 
-        productsToHtml = productsToHtml + `
-        <tbody>
-        <tr>
-          <th scope="row">${number++}</th>
-          <td>${i.name}</td>
-          <td> $${i.price}</td>
-        </tr>
-      </tbody>`
+        if(i.name || i.price){
+            productsToHtml = productsToHtml + `
+            <tbody>
+            <tr>
+              <th scope="row">${number++}</th>
+              <td>${i.name}</td>
+              <td> $${i.price}</td>
+            </tr>
+          </tbody>`
+        }
     });
     document.querySelector('#productsList').innerHTML = productsToHtml;
 }
