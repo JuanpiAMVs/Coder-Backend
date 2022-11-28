@@ -1,0 +1,64 @@
+1()
+>mongo
+>use ecommerce
+>db.createCollection('productos')
+
+2()
+>db.productos.insertMany([
+    {name:"JP0", price:223, stock:578}, 
+    {name:"JP1", price:423, stock:78}, 
+    {name:"JP2", price:3323, stock:58}, 
+    {name:"JP3", price:434, stock:8}, 
+    {name:"JP4", price:543, stock:7}, 
+    {name:"JP5", price:3765, stock:8}, 
+    {name:"JP6", price:4765, stock:578}, 
+    {name:"JP7", price:512, stock:578}, 
+    {name:"JP8", price:4623, stock:578}, 
+    {name:"JP9", price:4433, stock:578}
+])
+
+>db.mensajes.insertMany([
+    {email:"JP0", message:"asdsdasdasd"}, 
+    {email:"JP1", message:"sdasdasd"}, 
+    {email:"JP2", message:"afasdas"}, 
+    {email:"JP3", message:"gffsdfdsf"}, 
+    {email:"JP4", message:"dsggsfsdf"}, 
+    {email:"JP5", message:"dfgsdfsdfs"}, 
+    {email:"JP6", message:"dfsdfdsfdsfdsf"}, 
+    {email:"JP7", message:"dsfdsfgsdfsd"}, 
+    {email:"JP8", message:"4623"}, 
+    {email:"JP9", message:"4433"}
+])
+
+3()
+>db.productos.find()
+>db.mensajes.find()
+
+4()
+>db.products.estimatedDocumentCount()
+>db.mensajes.estimatedDocumentCount()
+
+5()
+ a() =  >db.productos.insertOne({name: "JP11", price: 654, stock: 343})
+ b(1) = >db.productos.find({price: {$lt: 1000}}) // menor que 
+ b(2) = >db.productos.find({$and: [{price: {$gt :1000}}, {price:{$lt:3000}}]})
+ b(3) = >db.productos.find({price: {$gt: 3000}})  // mayor que
+ b(4) = >db.productos.find({},{"name":1}).sort({price: 1}).limit(3).skip(2).limit(1)
+
+ 6()
+ >db.productos.updateMany({},{$set: {stock: 100}})
+
+ 7()
+ >db.productos.update({price: {$gt: 4000}},{$set: {stock: 0}})
+
+ 8()
+ >db.productos.deleteMany({price: {$lt: 1000}})
+
+ 9()
+    >db.createUser({user: "pepe", pwd: "asd456", roles: [{role: 'read', db: 'ecommerce'}]})
+    >exit
+    >mongo -u pepe -p asd456
+    >show databases
+    >use ecommerce
+    >show collections
+    >db.productos.deleteOne({"_id" : ObjectId("6384fe2c06f8cef71fb9858e")})
