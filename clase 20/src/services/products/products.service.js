@@ -1,10 +1,17 @@
-const fs = require("fs/promises");
+import ProductosDaoMongoDb from "../../daos/productos/ProductosDaoMongoDb.js";
 
 
-class Products {
+class productsService{
+  constructor(){
+    this.dataBase = new ProductosDaoMongoDb()
+  }
   async getAllProducts() {
-   /*  const data = await fs.readFile(__dirname + "/products.json"); */
-    return JSON.parse(data);
+    try{
+      console.log(await this.dataBase.read())
+      return await this.dataBase.read()
+    }catch(err){
+      throw new Error(err)
+    }
   }
 
   async postProducts(data) {
@@ -57,4 +64,8 @@ class Products {
  }
 }
 
-module.exports = Products;
+export default productsService
+
+const ProductServ = new productsService()
+
+ProductServ.getAllProducts()

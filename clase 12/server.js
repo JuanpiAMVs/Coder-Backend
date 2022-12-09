@@ -1,17 +1,26 @@
-const app = require('./app')
+const express = require('express');
 const {Server: HttpServer} = require('http');
-require('dotenv').config();
-
-
-const http = new HttpServer(app)
-
 const {Server: IoServer} = require('socket.io');
+require('dotenv').config();
 
 const messages = []
 const products = []
 
+const app = express();
+
+const http = new HttpServer(app)
+
 const io = new IoServer(http)
+
+app.use(express.static('public'));
+
+app.get('/', (_req, res) => {
+    res.sendFile('index', {root:__dirname})
+})
+
 const PORT = process.env.PORT
+
+http.listen(PORT, () => console.info(`Server up and running on PORT ${PORT}`))
 
 io.on('connection', (socket) => {
     console.info('Nuevo cliente conectado')    
@@ -29,5 +38,3 @@ io.on('connection', (socket) => {
         io.sockets.emit('NEW_PRODUCT_FROM_SERVER', (data))
     })
 })
-
-http.listen(PORT, () => console.info(`Server up and running on PORT ${PORT}`))

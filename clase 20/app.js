@@ -1,8 +1,12 @@
-const express = require("express");
+import express from 'express'
 const productsRouter = require("./src/routes/products.routes");
 const cartsRouter = require("./src/routes/carts.routes");
 const errorHandler = require("./src/middlewares/errorHandler");
-require("dotenv").config();
+import productService from './src/daos/index.js'
+import dotenv from 'dotenv';
+dotenv.config()
+
+productService()
 
 const app = express();
 app.set('view engine','ejs')

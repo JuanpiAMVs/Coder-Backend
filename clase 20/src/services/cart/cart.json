@@ -1,0 +1,36 @@
+[
+  { "id": "id", "timestamp": "Date.now()", "products": "products" },
+  {
+    "id": 8,
+    "timestamp": 1668688161736,
+    "products": [
+      {
+        "id": 12,
+        "timestamp": 1668632277200,
+        "nombre": "",
+        "descripcion": "",
+        "foto": "",
+        "precio": 3213,
+        "stock": 3
+      },
+      {
+        "id": 3232,
+        "timestamp": 1668632277201,
+        "nombre": "",
+        "descripcion": "",
+        "foto": "",
+        "precio": 768678,
+        "stock": 5
+      },
+      {
+        "id": "123",
+        "timestamp": 1668700240552,
+        "nombre": "Pedro",
+        "descripcion": "asdasdasdadad",
+        "foto": "123123123123",
+        "precio": "2323232",
+        "stock": "323233"
+      }
+    ]
+  }
+]
