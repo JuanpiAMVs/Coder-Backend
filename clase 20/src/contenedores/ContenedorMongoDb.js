@@ -3,19 +3,20 @@ import productSchema from '../models/mongoose.model.js'
 import * as dotenv from 'dotenv' 
 dotenv.config({ path: "../../.env"})
 
-const mongo_url = process.env.MONGO_URL
-console.log('mongourl ' + mongo_url)
+
 
 class ContenedorMongoDb{
     constructor(){
         this.mongodbs = process.env.MONGO_URL
     }
 async connect(){
+    console.info('mongourl ' + this.mongodbs)
     const URL = this.mongodbs;
     await mongoose.connect(URL,{
         useNewUrlParser: true,
         useUnifiedTopology: true
     });
+    console.log('mongourl ' + this.mongodbs)
 }
 async create(data){
     try{
@@ -68,9 +69,6 @@ async delete(id){
 
 }
 
-const db = new ContenedorMongoDb()
-
- db.read()
 
 export default ContenedorMongoDb
 

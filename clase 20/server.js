@@ -1,4 +1,4 @@
-const app = require('./app')
+import app from './app.js'
 const {Server: HttpServer} = require('http');
 require('dotenv').config();
 

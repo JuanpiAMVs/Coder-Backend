@@ -1,21 +1,21 @@
 import express from 'express'
+const productsService = await import ('../services/products/products.service.js')
 const router = express.Router();
-const products = require("../../services/products/products.js");
 
 
 
-const productsService = new products();
+const productosService = new productsService();
 
 router.get("/", async (_req, res, next) => {
   try {
-    const data = await productsService.getAllProducts();
+    const data = await productosService.getAllProducts()
     res.status(200).json(data);
   } catch (err) {
     next(err);
   }
 });
 
-router.get("/:id", async (req, res, next) => {
+/* router.get("/:id", async (req, res, next) => {
   try {
     const { id } = req.params; // const id = req.params.id
     const data = await productsService.getAllProducts();
@@ -87,6 +87,6 @@ router.delete('/:id', async (req, res, next) => {
     }catch(err){
         throw new Error(err);
     }
-})
+}) */
 
-module.exports = router;
+export default router;

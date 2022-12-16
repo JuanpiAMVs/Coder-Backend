@@ -5,5 +5,4 @@ class ProductosDaoMongoDb extends ContenedorMongoDb {
     super();
   }
 }
-
 export default ProductosDaoMongoDb;

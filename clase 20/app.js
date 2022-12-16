@@ -1,10 +1,10 @@
 import express from 'express'
-const productsRouter = require("./src/routes/products.routes");
+const productsRouter = await import ('./src/routes/products.routes.js')
 const cartsRouter = require("./src/routes/carts.routes");
 const errorHandler = require("./src/middlewares/errorHandler");
 import productService from './src/daos/index.js'
-import dotenv from 'dotenv';
-dotenv.config()
+import * as dotenv from 'dotenv'
+dotenv.config({path:'./src/daos/.env'})
 
 productService()
 
@@ -25,4 +25,4 @@ app.use("/api/carrito", cartsRouter);
 
 app.use(errorHandler);
 
-module.exports = app;
+export default app
