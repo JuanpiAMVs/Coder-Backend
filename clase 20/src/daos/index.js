@@ -1,15 +1,17 @@
 import * as dotenv from 'dotenv'
 dotenv.config({path:"./.env"})
+import { ProductosDaoMongoDb } from './productos/ProductosDaoMongoDb.js'
 
 const getProductModule = async () => {
-    const dataFrom = process.env.DATAFROM;
+    /* const dataFrom = process.env.DATAFROM; */
+    const dataFrom = 'MongoDb'
     if(dataFrom == "FS"){
-        const moduleSource = await import ('./productos/ProductosDaoArchivo.js')
-        return moduleSource.default;
+        const moduleSource = import ('./productos/ProductosDaoArchivo.js')
+        return moduleSource
     } else if (dataFrom == 'MongoDb'){
-        const moduleSource = await import ('./productos/ProductosDaoMongoDb.js')
+        const moduleSource = ProductosDaoMongoDb
         console.log('data from ' + dataFrom)
-        return moduleSource.default;
+        return moduleSource
     } else{
         console.log(dataFrom)
         return
@@ -19,12 +21,10 @@ const getProductModule = async () => {
 const ProductService = async () => {
     try{
         const productClass = await getProductModule();
-        const productService = new productClass()
-        console.log(productService.read())
-        return productService
+        return productClass
     }catch(err){
         throw new Error(err)
     }
 
 }
-export default ProductService()
+export default ProductService

@@ -1,56 +1,38 @@
 import mongoose from 'mongoose'
-import productSchema from '../models/mongoose.model.js'
-import * as dotenv from 'dotenv' 
-dotenv.config({ path: "../../.env"})
-
-
+import connectDB from '../DB/Models&Connect/connect.js';
+connectDB()
 
 class ContenedorMongoDb{
-    constructor(){
-        this.mongodbs = process.env.MONGO_URL
+    constructor(model){
+        this.model = model
     }
-async connect(){
-    console.info('mongourl ' + this.mongodbs)
-    const URL = this.mongodbs;
-    await mongoose.connect(URL,{
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    });
-    console.log('mongourl ' + this.mongodbs)
-}
+
 async create(data){
     try{
-        this.connect()
-        await mongoose.connect(URL,{
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        });  
-        console.info(`Mongoose connected`)
-        const newProduct = new productSchema(data)
-        const product = await newProduct.save()
-        console.log(product)
+        const newItem = new this.model(data)
+        await newItem.save()
+        console.log(newItem)
+        return newItem
 
     }catch(err){
-        throw new Error(err)
+        throw new Error(`error saving item in MongoDb ${err}`)
     }
 
 }
 
 async read(){
     try{
-        this.connect()
-        console.info(`Mongoose connected`)
-        const read = await productSchema.find()
+        const read = await this.model.find()
         console.log(read)
         return read
     }catch(err){
-        throw new Error(err)
+        throw new Error(`error reading data from mongodb: ${err}`)
     }
 }
 
 async update(id, changes){
     try{
-        const updated = await productSchema.updateOne({_id:id}, {$set: {name: changes.name, price: changes.price, stock:changes.stock}})
+        const updated = await this.model.updateOne({_id:id}, {$set: {name: changes.name, price: changes.price, stock:changes.stock}})
         console.log(updated)
     }catch(err){
         throw new Error(err)
@@ -58,10 +40,31 @@ async update(id, changes){
 
 }
 
+async getById(id){
+    if(!id) throw new Error('ID PARAM MISSING')
+    try{
+        const data = await this.model.findOne({_id: id})
+        if(!data){
+            return {
+                success: false,
+                data: 'Item not found'
+            }
+        }
+        return data
+    }catch(err){
+        throw new Error(err)
+    }
+}
+
 async delete(id){
     try{
-        const deleted = await productSchema.deleteOne({_id:id})
-        console.info(`Item with id ${id} has been deleted`)
+        const deleted = await this.model.deleteOne({_id:id})
+        if(!deleted){
+            return {
+                success: false,
+                data: 'Item not found'
+            }
+        }
     }catch(err){
         throw new Error(err)
     }

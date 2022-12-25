@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProductsForm</title>
+</head>
+
+<body>
+    <h1>Ingreso Productos</h1>
+
+    <div class="form-ctn">
+
+        <form action="/api/productos" method="POST">
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="name" />
+
+            <label for="price">Price:</label>
+            <input type="number" min="0" id="price" name="price" placeholder="Price" />
+            <label for="stock">Stock:</label>
+            <input type="number" min="0" id="stock" name="stock" placeholder="Stock" />
+
+            <input class="input-btn" type="submit" value="Send" />
+
+
+            <a href="/api/productos" class="form-btn">Ver Productos</a>
+
+
+        </form>
+
+    </div>
+</body>
+
+</html>

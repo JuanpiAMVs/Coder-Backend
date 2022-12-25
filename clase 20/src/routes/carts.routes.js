@@ -1,76 +1,17 @@
-const express = require("express");
+import express from 'express'
 const router = express.Router();
-const cart = require("../../services/cart/cart");
 
-const carrito = new cart();
+import * as controller from '../controllers/carts.controller.js'
 
-router.post("/", async (req, res, next) => {
-  try {
-    const { body } = req;
-    const data = await carrito.createCart(body.id);
-    console.log(body);
-    res.status(200).json({
-      success: true,
-      data: body,
-    });
-  } catch (err) {
-    next(err);
-  }
-});
 
-router.delete('/:id', async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    const data = await carrito.deleteCart(id);
-    res.status(200).json({
-      success: true,
-      data: `id ${id} deleted`,
-    });
-  } catch (err) {
-    next(err)
-  }
-});
 
-router.get('/:id/productos', async (req, res, next) => {
-    try{
-        const { id } = req.params;
-        const data = await carrito.getProducts(id)
-        res.status(200).json({
-            success: true,
-            products: data
-        })
-        return
-    }catch(err){
-        next(err)
-    }
-})
+router.get('/', controller.getCarts)
+router.get('/:id', controller.getCartById)
 
-router.post('/:id/productos', async (req, res, next) => {
-    try{
-        const { id } = req.params
-        const { body } = req;
-        const data = await carrito.addProduct(id, body)
-        res.status(200).json({
-            succes: true,
-            newsProducts: data 
-        })
-    }catch(err){
-        next(err)
-    }
-})
+router.post('/', controller.postCart)
+router.post('/:id', controller.postProductToCart)
 
-router.delete('/:id/productos/:id_prod', async (req, res, next) => {
-    try{
-        const { id } = req.params
-        const { id_prod } = req.params
-        const data = await carrito.deleteProductById(id, id_prod)
-        res.status(200).json({
-            succes: true,
-            productDeleted: data  
-        })
-    }catch(err){
-        next(err)
-    }
-})
+router.delete('/:id',controller.deleteCartById)
+router.delete('/:id/productos', controller.deleteProductCart)
 
-module.exports = router;
+export default router
