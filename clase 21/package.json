@@ -1,0 +1,22 @@
+{
+  "name": "clase-21",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^6.8.2",
+    "normalizr": "^3.6.2"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^7.6.0"
+  }
+}
