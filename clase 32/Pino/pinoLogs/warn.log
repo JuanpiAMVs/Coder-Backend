@@ -38,3 +38,4 @@
 {"level":40,"time":1676595529753,"pid":16248,"hostname":"DESKTOP-C95M26K","msg":"Peticion a ruta no establecida: /in"}
 {"level":40,"time":1676595529897,"pid":16248,"hostname":"DESKTOP-C95M26K","msg":"Peticion a ruta no establecida: /in"}
 {"level":40,"time":1676595541427,"pid":16248,"hostname":"DESKTOP-C95M26K","msg":"Peticion a ruta no establecida: /in"}
+{"level":40,"time":1676667411813,"pid":11020,"hostname":"DESKTOP-C95M26K","msg":"Peticion a ruta no establecida: /favicon.ico"}
